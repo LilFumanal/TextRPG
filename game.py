@@ -14,7 +14,7 @@ def combat(aventurier):
     vie = 3
     while vie > 0 and combat < 10: 
         if aventurier.pv > 0 or monstre.pv > 0:
-            while True:
+            while r == "":
                 r = input("1: ATTAQUER \n2: FUIR")
                 if r == 1:
                     aventurier.attack(monstre)
@@ -26,18 +26,20 @@ def combat(aventurier):
                 monstre.attack(aventurier)
                 break
         elif aventurier.pv <= 0:
+            """"si les pv du joueurs tombent a 0 il perd un niveaux, ainsi qu'une vie"""
             print("Vous avez perdu, vous descendez de 1 niveaux.")
             aventurier.level_down()
             aventurier.pv = aventurier.pv_max
             vie -= 1
-            combat += 1
             print("il vous reste {vie} résurection disponible.")
         elif monstre.pv <= 0:
-            aventurier.level_up()
+            aventurier.exp += monstre.XP
             combat += 1
             monstre = Ennemy()
+            print(f"un nouveaux {monstre.name} apparait devant vous")
         else: 
-
+            print("il y a eu une érreur lors du combat")
+            break
 
         
 
