@@ -11,12 +11,15 @@ class Ennemy(Character):
 
     def attack(self, target):
       """Méthode attaque définissant l'attaque ennemie"""
-      x = target.attk_dmg+target.buff_attack
-      dmg = randint(0, x) 
-      target.pv = target.pv-dmg
-      print(f"{self.name} has done {dmg} damage")
+      if self.pv <= 0:
+        pass
+      else: 
+        x = target.attk_dmg+target.buff_attack
+        dmg = randint(0, x) 
+        target.pv = target.pv-dmg
+        print(f"{self.name} has done {dmg} damage")
             
     def readDetails(self, target):
       "Donne les détails de l'ennemi: la puissance de son attaque, ses PVs, et l'expérience qu'il donnera si vaincu"
       total = target.attk_dmg + target.buff_attack
-      print(f"{self.name} : Attack from 0 to {total} \n PV: {self.pv} / {self.pv_max} \n Points d'experience: {self.xp} \n ")
+      print(f"****** MONSTRE ****** \n{self.name}  \nAttaque entre 0 et {total} \nPV: {self.pv} / {self.pv_max} \nPoints d'experience: {self.xp} \n ")
