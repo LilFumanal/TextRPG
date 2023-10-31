@@ -1,45 +1,60 @@
 from Player import Player
 from Ennemy import Ennemy
 
-def creation_du_personage():
-    nom = input(f"bonjour jeune aventurier, quelle est votre nom ? \n")
-    print("{nom}, c'est ça ? bienvenue dans le donjon deathtrap")
-    aventurier = Player(nom)
-    return aventurier
+def create_player():
+    nom = input(f"Bonjour jeune aventurier, quel est votre nom ? \n")
+    print(f"{nom}, c'est ça ? Bienvenue dans le donjon Deathtrap")
+    adventurer = Player(nom)
+    return adventurer
 
-def combat(aventurier): 
-    monstre = Ennemy()  
-    print(f"un {monstre.nom} apparait devant vous! Que faites-vous ?")
-    combat = 10
-    vie = 3
-    while vie > 0 and combat < 10: 
-        if aventurier.pv > 0 or monstre.pv > 0:
-            while True:
-                r = input("1: ATTAQUER \n2: FUIR")
-                if r == 1:
-                    aventurier.attack(monstre)
-                elif r == 2:
-                    print("vous avez fuis le combat\n GAME OVER")
-                    exit()
-                else :
-                    print("je n'est pas bien compris")
-                monstre.attack(aventurier)
-                break
-        elif aventurier.pv <= 0:
-            print("Vous avez perdu, vous descendez de 1 niveaux.")
-            aventurier.level_down()
-            aventurier.pv = aventurier.pv_max
-            vie -= 1
-            combat += 1
-            print("il vous reste {vie} résurection disponible.")
-        elif monstre.pv <= 0:
-            aventurier.level_up()
-            combat += 1
-            monstre = Ennemy()
-        else: 
+def combat(adventurer, monster):
+    monster.readDetails(adventurer)
+    adventurer.readDetails()
+    r = input("1: ATTAQUER \n2: FUIR \n")
+    if r == "1":
+      adventurer.attack(monster)
+      monster.attack(adventurer)
+      combat(adventurer, monster)
+    elif r == "2":
+      print("Vous avez fuit le combat. \n GAME OVER")
+      exit()
+    else :
+      print("Veuillez taper 1 ou 2. Ctrl + Z pour quitter le programme")
+      combat(adventurer, monster)
 
-
-        
-
-        
+def init_combat(adventurer):
+    monster = Ennemy()
+    print(f"Un {monster.name} apparait devant vous! Que faites-vous ?")
+    life_time(adventurer, monster)
     
+def life_time(adventurer, monster):
+    while (adventurer.pv and monster.pv) > 0:
+      combat(adventurer, monster)
+    if adventurer.pv <= 0:
+      print("Oh non, vous êtes morts!")
+      if adventurer.lvl < 1:
+        print("Pas de chance! Adieu.")
+        exit()
+      else:
+        print("Vous perdez un niveau et votre expérience acquise.")
+        adventurer.level_down()
+        init_combat(adventurer)
+    elif monster.pv <= 0:
+      print("OHLALA vous avez gagné!")
+      adventurer.exp_up(adventurer, monster)
+      init_combat(adventurer)
+    else :
+      print ("Votre combat a été interrompu de manière inattendue...")
+      exit()
+
+def exp_up(adventurer, monster):
+  adventurer.exp += monster.xp
+  if adventurer.exp >= 100:
+    print("Oh! Vous montez d'un niveau!")
+    adventurer.level_up()
+
+def main():
+  game =  create_player()
+  init_combat(game)
+  
+main()
