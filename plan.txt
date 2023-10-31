@@ -1,0 +1,25 @@
+Player:
+_name:
+pv:20pv
+_attaque: 5 +D6
+_experience:
+_attq_sup:
+pv_sup:
+attaque():
+read_details():
+level_up()
+heal(): fin combat +20%pv_max
+
+Ennemy:
+_name:
+pv:30pv
+_dgts_attq:0 -> player.attaq
+attaque(): 
+readDetails()
+
+Character:
+
+
+level_up():
+20pv + 2%
+5dgts +2%
