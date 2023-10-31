@@ -14,5 +14,9 @@ class Ennemy(Character):
             dmg = randint(0,(Player.attk_dmg+Player.buff_attk))
             Target.pv = Target.pv-dmg
             print(f"{name} has done {dmg} damage")
-        def readDetails(self):
             
+        def readDetails(self):
+            print(f"Attack from 0 to {Player.attk_dmg+Player.buff_attk} \n 
+                  PV: {self.pv} / {self.pv_max + self.buff_pv} \n 
+                  Level: {self.lvl} \n 
+                  Experience: {self.exp} \n ")
