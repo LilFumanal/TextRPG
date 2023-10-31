@@ -34,10 +34,18 @@ class Player(Character):
     self.buff_pv= self.buff_pv + self.pv_max / 100 * 20
     self.buff_attack= self.buff_attack + self.attk_dmg / 100 * 20
     print(self.buff_attack, self.buff_pv)
+    
+  def level_down(self):
+    self.lvl -= 1
+    self.buff_pv= self.buff_pv - self.pv_max / 100 * 20
+    self.buff_attack= self.buff_attack - self.attk_dmg / 100 * 20
+    print(self.buff_attack, self.buff_pv)
 
 player1 = Player("Andrew")
 player2 = Player("PIERRE")
 player2.readDetails()
 player2.level_up()
-player2.heal()
 player2.readDetails()
+player2.level_down()
+player2.readDetails()
+player2.heal()
