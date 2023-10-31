@@ -13,7 +13,7 @@ class Player(Character):
   def readDetails(self):
     attk = self.buff_attack + self.attk_dmg
     maxpv = self.pv_max + self.buff_pv
-    print(f"Nom: {self.name} \nAttaque : {attk},\nPV: {self.pv} / {maxpv} \nLevel: {self.lvl}\n Experience: {self.exp}")
+    print(f"***** VOUS ****** \nNom: {self.name} \nAttaque : {attk},\nPV: {self.pv} / {maxpv} \nLevel: {self.lvl}\n Experience: {self.exp}")
   
   def attack(self, target):
     total = (self.attk_dmg) + (random.randint(0, 5))
