@@ -2,9 +2,10 @@
 from abc import ABC, abstractmethod
 
 class Character(ABC):
-  def __init__(self, name, pv, attk_dmg) -> None:
+  def __init__(self, name, pv, pv_max, attk_dmg) -> None:
     self.name: str = name
     self.pv: int = pv
+    self.pv_max: int = pv_max
     self.attk_dmg: int = attk_dmg
   
   def readDetails(self):
