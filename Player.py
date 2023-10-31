@@ -36,10 +36,14 @@ class Player(Character):
     print(self.buff_attack, self.buff_pv)
     
   def level_down(self):
-    self.lvl -= 1
-    self.buff_pv= self.buff_pv - self.pv_max / 100 * 20
-    self.buff_attack= self.buff_attack - self.attk_dmg / 100 * 20
-    print(self.buff_attack, self.buff_pv)
+    if self.lvl > 1:
+      self.lvl -= 1
+      self.buff_pv= self.buff_pv - self.pv_max / 100 * 20
+      self.buff_attack= self.buff_attack - self.attk_dmg / 100 * 20
+      print(self.buff_attack, self.buff_pv)
+    else:
+      print("vous êtes déja niveaux 1, vous ne pouvez pas perdre de niveaux")
+    
 
 player1 = Player("Andrew")
 player2 = Player("PIERRE")

@@ -8,10 +8,38 @@ def creation_du_personage():
     return aventurier
 
 def combat(aventurier): 
-    monstre = Ennemy()   
+    monstre = Ennemy()  
     print(f"un {monstre.nom} apparait devant vous! Que faites-vous ?")
-    r = input("1: ATTAQUER \n2: FUIR")
-    if r == 1:
-        aventurier.attack(monstre)
-    elif r == 2:
+    combat = 10
+    vie = 3
+    while vie > 0 and combat < 10: 
+        if aventurier.pv > 0 or monstre.pv > 0:
+            while True:
+                r = input("1: ATTAQUER \n2: FUIR")
+                if r == 1:
+                    aventurier.attack(monstre)
+                elif r == 2:
+                    print("vous avez fuis le combat\n GAME OVER")
+                    exit()
+                else :
+                    print("je n'est pas bien compris")
+                monstre.attack(aventurier)
+                break
+        elif aventurier.pv <= 0:
+            print("Vous avez perdu, vous descendez de 1 niveaux.")
+            aventurier.level_down()
+            aventurier.pv = aventurier.pv_max
+            vie -= 1
+            combat += 1
+            print("il vous reste {vie} résurection disponible.")
+        elif monstre.pv <= 0:
+            aventurier.level_up()
+            combat += 1
+            monstre = Ennemy()
+        else: 
+
+
         
+
+        
+    
