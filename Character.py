@@ -2,15 +2,15 @@
 from abc import ABC, abstractmethod
 
 class Character(ABC):
-  def __init__(self, name, pv, pv_max, attk_dmg) -> None:
+  def __init__(self, name, pv, pv_max) -> None:
     self.name: str = name
     self.pv: int = pv
     self.pv_max: int = pv_max
-    self.attk_dmg: int = attk_dmg
   
+  @abstractmethod
   def readDetails(self):
     """Récupérer les détails du joueur"""
-    print(self.name, "has", self.pv, "PV and will attack with", self.attk_dmg, "damages.")
+    pass
   
   @abstractmethod
   def attack(Target):
