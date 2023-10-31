@@ -5,18 +5,18 @@ from random import *
 
 
 class Ennemy(Character):
-    def __init__(self, name:str = "Gobelin", pv:int = 30, pv_max:int=30, XP:int = 10):
+    def __init__(self, name:str = "Gobelin", pv:int = 30, pv_max:int=30, xp:int = 10):
         super().__init__(name, pv, pv_max)
-        self.XP = XP
+        self.xp = xp
 
     def attack(self, target):
       """Méthode attaque définissant l'attaque ennemie"""
-      dmg = randint(0,(target.attk_dmg+target.buff_attk)) 
+      x = target.attk_dmg+target.buff_attack
+      dmg = randint(0, x) 
       target.pv = target.pv-dmg
       print(f"{self.name} has done {dmg} damage")
             
     def readDetails(self, target):
-      "Donne les détails de l'ennemis: la range de son attaque, ses PVs, et l'expérience qu'il donnera si vaincu"
-      print(f"Attack from 0 to {target.attk_dmg + target.buff_attk} \n 
-      PV: {self.pv} / {self.pv_max} \n 
-      Points d'experience: {self.XP} \n ")
+      "Donne les détails de l'ennemi: la puissance de son attaque, ses PVs, et l'expérience qu'il donnera si vaincu"
+      total = target.attk_dmg + target.buff_attack
+      print(f"{self.name} : Attack from 0 to {total} \n PV: {self.pv} / {self.pv_max} \n Points d'experience: {self.xp} \n ")
