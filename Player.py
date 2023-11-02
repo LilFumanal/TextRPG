@@ -38,7 +38,7 @@ class Player(Character):
     self.buff_pv= self.buff_pv + self.pv_max / 100 * 20
     self.buff_attack= self.buff_attack + self.attk_dmg / 100 * 20
     self.exp = 0
-    print(self.buff_attack, self.buff_pv)
+    print(f"Vous gagnez un niveau. \n Bonus d'attaque:{self.buff_attack} \n Bonus de PV:{self.buff_pv}")
     
   def level_down(self):
     """Perd un niveau, enlevant des bonus de PV et d'attaque"""
@@ -47,7 +47,7 @@ class Player(Character):
       self.buff_pv= self.buff_pv - self.pv_max / 100 * 20
       self.buff_attack= self.buff_attack - self.attk_dmg / 100 * 20
       self.exp = 0
-      print(self.buff_attack, self.buff_pv)
+      print(f"Vous perdez un niveau. \n Bonus d'attaque: {self.buff_attack} \n Bonus de PV: {self.buff_pv}")
     else:
       print("Vous êtes déjà niveau 1, vous ne pouvez pas perdre de niveau. Vous êtes donc mort")
       exit()
