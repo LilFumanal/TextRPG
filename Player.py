@@ -11,16 +11,19 @@ class Player(Character):
     self.lvl: int = lvl
     
   def readDetails(self):
+    """Obtiens les détails du joueur"""
     attk = self.buff_attack + self.attk_dmg
     maxpv = self.pv_max + self.buff_pv
     print(f"***** VOUS ****** \nNom: {self.name} \nAttaque : {attk},\nPV: {self.pv} / {maxpv} \nLevel: {self.lvl}\n Experience: {self.exp}")
   
   def attack(self, target):
+    """Attaque une cible, lui infligeant des dégats fixes ainsi que des dégats aléatoires"""
     total = (self.attk_dmg) + (random.randint(0, 5))
     target.pv = target.pv - total
     print(f"{self.name} attack! {total} damages done!")
     
   def heal(self):
+    """Soigne le joueur de 20% des points de vie max"""
     if self.pv < self.pv_max:
       add = self.pv_max / 100 * 20
       self.pv += add
@@ -29,6 +32,7 @@ class Player(Character):
       print("You're already full-life!")
     
   def level_up(self):
+    """Monte d'un niveau, ajoutant des bonus de PV et d'attaque"""
     self.lvl += 1
     self.buff_pv= self.buff_pv + self.pv_max / 100 * 20
     self.buff_attack= self.buff_attack + self.attk_dmg / 100 * 20
@@ -36,6 +40,7 @@ class Player(Character):
     print(self.buff_attack, self.buff_pv)
     
   def level_down(self):
+    """Perd un niveau, enlevant des bonus de PV et d'attaque"""
     if self.lvl > 1:
       self.lvl -= 1
       self.buff_pv= self.buff_pv - self.pv_max / 100 * 20
