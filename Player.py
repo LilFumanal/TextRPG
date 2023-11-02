@@ -1,3 +1,4 @@
+"""classe fille définissant les joueurs """
 from Character import Character
 import random
 

@@ -4,7 +4,7 @@ from random import *
 
 
 class Ennemy(Character):
-    def __init__(self, name:str = "Gobelin", pv:int = 30, pv_max:int=30, xp:int = 10):
+    def __init__(self, name:str = "Gobelin", pv:int = 30, pv_max:int=30, xp:int = 100):
         super().__init__(name, pv, pv_max)
         self.xp = xp
 
